@@ -1,5 +1,6 @@
 <html lang="en">
  <head>
+   <link rel="stylesheet" href="/function/style/style.css">
    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -150,6 +151,7 @@
         }
   </style>
  </head>
+ 
  <body class="flex flex-col items-center p-4">
   <div class="w-full max-w-md">
    <div class="relative w-full h-48">
@@ -584,8 +586,7 @@
     </a>
    </div>
    
-   
-  <div class="flex justify-center mt-4 space-x-4">
+<div class="flex justify-center mt-4 space-x-4">
   <a href="#" id="toggleApiButton">
     <p class="text-red-600 font-bold text-lg flex items-center space-x-2">
       <i class="fas fa-fire-alt"></i>
@@ -593,10 +594,7 @@
     </p>
   </a>
 </div>
-
-<!-- Container untuk tombol tambahan -->
 <div id="additionalButtons" class="flex flex-col justify-center mt-4 space-y-2" style="display: none; opacity: 0; transform: translateY(-20px); transition: all 0.5s ease-in-out; width: 100%;">
-  
   <!-- AI Button -->
   <a href="#" class="text-white bg-gray-700 hover:bg-gray-800 px-4 py-2 rounded-full shadow-lg text-lg font-medium transition-all w-full text-center" id="aiButton">
     <i class="fas fa-robot"> artificial intelligence </i>
@@ -630,12 +628,10 @@
     <a class="collapse-item text-white bg-black hover:bg-gray-800 px-2 py-1 rounded-full shadow-sm text-xs font-medium transition-all w-max mx-auto" target="_blank" href="/api/random/meme"> meme </a>
   </div>
 </div>
-
 <script>
   document.getElementById('toggleApiButton').addEventListener('click', function(event) {
     event.preventDefault();
     const additionalButtons = document.getElementById('additionalButtons');
-    
     if (additionalButtons.style.display === 'none' || additionalButtons.style.display === '') {
       additionalButtons.style.display = 'flex';
       setTimeout(() => {
@@ -676,7 +672,7 @@
   toggleSubButtons('randomButton', 'randomSubButtons');
 </script>
    
-   
+
    <div class="mt-4">
     <div class="card">
   <a href="https://chat.whatsapp.com/I0BAZxGYlrE5jFHiAOr14U" target="_blank" class="flex items-center space-x-2 cursor-pointer hover:bg-gray-700 p-2 rounded-lg transition-all">
@@ -726,19 +722,16 @@
   no kiss no hug, only fix and bug
 </p>
 
-
-
-    <div class="flex items-center justify-center mt-2">
-  <button id="playlistButton" class="flex items-center space-x-2 cursor-pointer hover:bg-gray-700 p-2 rounded-lg transition-all" style="font-family: 'Poppins', sans-serif; font-weight: 600;">
-    <i class="fab fa-spotify text-green-500">
-   </i>
-    
+<div class="flex items-center justify-center mt-2">
+  <button id="playlistButton" class="flex items-center space-x-2 cursor-pointer hover:bg-gray-700 p-2 rounded-lg transition-all">
+    <i class="fab fa-spotify text-green-500"></i>
     <span class="ml-2">
-  click here to playlist
-</span>
-</button>
+      click here to playlist
+    </span>
+  </button>
 </div>
-<div id="playlistContent" class="mt-2 text-gray-400 hidden" style="font-family: 'Poppins', sans-serif;">
+
+<div id="playlistContent" class="mt-2 text-gray-400 hidden">
   <ul class="list-disc ml-6 space-y-1">
     <li>juice wrld</li>
     <li>lil uzi</li>
@@ -753,26 +746,15 @@
 <script>
   document.getElementById('playlistButton').addEventListener('click', () => {
     const content = document.getElementById('playlistContent');
-    
     if (content.classList.contains('hidden')) {
-      // Show the playlist with smooth animation
       content.classList.remove('hidden');
-      content.style.maxHeight = content.scrollHeight + "px"; // Animate expanding
+      content.style.maxHeight = content.scrollHeight + "px"; 
     } else {
-      // Hide the playlist with smooth animation
       content.style.maxHeight = 0;
-      setTimeout(() => content.classList.add('hidden'), 300); // Hide after animation
+      setTimeout(() => content.classList.add('hidden'), 300); 
     }
   });
 </script>
-
-<style>
-  #playlistContent {
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease-in-out;
-  }
-</style>
 
 <div class="w-full max-w-md">
   <div class="relative w-full h-48">
@@ -812,62 +794,9 @@
   });
 </script>
 
-<!-- SweetAlert Library -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-  // Fungsi untuk menampilkan pop-up saat halaman dibuka
-  window.onload = function () {
-    // Tambahkan efek overlay gelap
-    document.body.insertAdjacentHTML(
-      'beforeend',
-      `<div id="overlay" style="
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        z-index: 9998;
-        opacity: 0;
-        animation: fadeIn 1s forwards;
-      "></div>`
-    );
-
-    // SweetAlert pop-up
-    Swal.fire({
-      title: '<strong>Welcome to Website whyuxD</strong>',
-      html: '<p style="margin-top: 10px;">Disini sudah tersedia Dark Ai</p>',
-      imageUrl: 'https://files.catbox.moe/55jlfp.jpg',
-      imageWidth: 200,
-      imageHeight: 200,
-      imageAlt: 'whyuxD',
-      showConfirmButton: true,
-      confirmButtonText: 'OK',
-      background: 'rgba(255, 255, 255, 0.9)',
-      customClass: {
-        popup: 'swal-custom-popup',
-      },
-      willClose: () => {
-        const overlay = document.getElementById('overlay');
-        if (overlay) overlay.remove();
-      },
-    });
-  };
-
- const style = document.createElement('style');
-  style.innerHTML = `
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-  `;
-  document.head.appendChild(style);
-</script>
+   <!-- Mengimpor SweetAlert2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="/function/style/js/popup.js" defer></script>
 
     <a class="text-orange-200" href="#">
   ◈ ᴡʜʏᴜxᴅ

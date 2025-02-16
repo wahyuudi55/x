@@ -1,0 +1,59 @@
+/* apis button style */
+#additionalButtons {
+  display: none;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease-in-out;
+  width: 100%;
+}
+
+.collapse-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.collapse-item:hover {
+  background-color: gray;
+}
+
+
+/* play list style */
+#playlistContent {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out;
+}
+
+#playlistButton {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#playlistButton:hover {
+  background-color: #2d3748; /* Hover effect */
+}
+
+#playlistButton i {
+  font-size: 20px;
+}
+
+#playlistButton span {
+  margin-left: 10px;
+  font-size: 16px;
+  color: #edf2f7;
+}

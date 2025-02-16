@@ -116,6 +116,63 @@ res.status(500).send("Internal Server Error");
 }
 });
 
+// Lirik (SARCH)
+app.get('/api/search/lirik', async (req, res) => {
+  try {
+    const { lagu } = req.query;
+    if (!lagu) {
+      return res.status(400).json({ error: 'Masukkan judul lagunya!' });
+    }
+    const apiurl = `https://api.vreden.web.id/api/lirik?lagu=${encodeURIComponent(lagu)}`;
+    const response = await axios.get(apiurl);
+    const { result } = response.data;
+    if (!result || !result.lyrics || !result.artist || !result.image) {
+      return res.status(404).json({ error: 'Lirik tidak ditemukan!' });
+    }
+    res.status(200).json({
+      status: 200,
+      creator: 'whyuxD',
+      lyrics: result.lyrics,
+      artist: result.artist,
+      thumbnail: result.image
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Meme (RANDOM)
+app.get('/api/random/meme', async (req, res) => {
+  try {
+    const response = await axios.get('https://api.vreden.my.id/api/meme');    
+    if (!response.data.result) {
+      return res.status(500).json({ error: 'Gagal mengambil data dari API' });
+    }
+    const imageUrl = response.data.result;
+    const imageResponse = await axios.get(imageUrl, { responseType: 'stream' });
+    res.setHeader('Content-Type', 'image/jpeg');
+    imageResponse.data.pipe(res);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Brat (TOOLS)
+app.get('/api/tools/brat', async (req, res) => {
+  try {
+    const { q } = req.query;
+    if (!q) {
+      return res.status(400).json({ error: 'Masukkan query terlebih dahulu!' });
+    }   
+    const apiUrl = `https://vapis.my.id/api/bratv1?q=${encodeURIComponent(q)}`;
+    const response = await axios.get(apiUrl, { responseType: 'stream' });
+    res.setHeader('Content-Type', 'image/jpeg');
+    response.data.pipe(res);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Ssweb (TOOLS)
 app.get('/api/tools/ssweb', async (req, res) => {
   try {
